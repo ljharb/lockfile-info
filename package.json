@@ -1,0 +1,29 @@
+{
+	"name": "lockfile-info",
+	"version": "0.0.0",
+	"description": "Info about an npm project - which lockfile version, which lockfile(s) are present, etc.",
+	"main": "index.js",
+	"exports": {
+		".": "./index.js",
+		"./package.json": "./package.json"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ljharb/lockfile-info.git"
+	},
+	"keywords": [
+		"npm",
+		"lockfile",
+		"package-lock",
+		"shrinkwrap"
+	],
+	"author": "Jordan Harband <ljharb@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ljharb/lockfile-info/issues"
+	},
+	"homepage": "https://github.com/ljharb/lockfile-info#readme"
+}
