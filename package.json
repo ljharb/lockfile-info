@@ -1,6 +1,6 @@
 {
 	"name": "lockfile-info",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "Info about an npm project - which lockfile version, which lockfile(s) are present, etc.",
 	"main": "index.js",
 	"exports": {
