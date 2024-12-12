@@ -6,12 +6,14 @@ const callBind = require('call-bind');
 const callBound = require('call-bound');
 
 const $Promise = Promise;
+/** @type {typeof Promise.all} */
 const $all = callBind(Promise.all, Promise);
 const $then = callBound('Promise.prototype.then');
 
 const TRUE = () => true;
 const FALSE = () => false;
 
+/** @type {(file: fs.PathLike) => Promise<boolean>} */
 function exists(file) {
 	return $then(
 		new $Promise((resolve, reject) => {
@@ -28,6 +30,7 @@ function exists(file) {
 	);
 }
 
+/** @type {import('.')} */
 module.exports = async function npmInfo(cwd = process.cwd()) {
 	const pHasNodeModulesDir = exists(join(cwd, 'node_modules'));
 
@@ -40,8 +43,10 @@ module.exports = async function npmInfo(cwd = process.cwd()) {
 	const shrinkwrapPath = join(cwd, 'npm-shrinkwrap.json');
 	const pHasShrinkwrap = exists(shrinkwrapPath);
 
+	/** @type {Promise<import('.').npmInfoObject['lockfileVersion']>} */
 	const pLockfileVersion = $then(
 		$all([pHasPackageLock, pHasShrinkwrap]),
+		/** @type {(results: [boolean, boolean]) => Promise<import('.').npmInfoObject['lockfileVersion']>} */
 		async ([hasPackageLock, hasShrinkwrap]) => {
 			/* eslint-disable global-require */
 			if (hasPackageLock) {
@@ -68,9 +73,9 @@ module.exports = async function npmInfo(cwd = process.cwd()) {
 		pHasShrinkwrap,
 		pLockfileVersion,
 	]);
-
 	const hasLockfile = hasPackageLock || hasShrinkwrap;
 
+	/** @type {import('.').npmInfoObject} */
 	return {
 		hasPackageJSON,
 		hasNodeModulesDir,
