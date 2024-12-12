@@ -3,7 +3,7 @@
 const fs = require('fs');
 const { join } = require('path');
 const callBind = require('call-bind');
-const callBound = require('call-bind/callBound');
+const callBound = require('call-bound');
 
 const $Promise = Promise;
 const $all = callBind(Promise.all, Promise);
